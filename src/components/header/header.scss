@@ -1,16 +1,41 @@
 header {
+	position: relative;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	height: 8rem;
 	border-bottom: 1px solid #30373B;
 	background: #212629;
+	z-index: 10;
 
 	.menu {
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		gap: 12.4rem;
+
+		@media (max-width: 1024px) {
+			gap: 3.6rem;
+		}
+	}
+
+	.logo-mobile {
+		display: none;
+		text-align: center;
+		@media (max-width: 1024px) {
+			display: block;
+		}
+	}
+	.logo-pc {
+		display: block;
+		@media (max-width: 1024px) {
+			display: none;
+		}
+	}
+
+	@media (max-width: 1024px) {
+		height: 12.4rem;
+		display: flex;
 	}
 
 	.menu-item {
