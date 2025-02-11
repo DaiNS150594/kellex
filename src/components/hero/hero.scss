@@ -2,7 +2,7 @@
     position: relative;
     background: url('../../assets/image/bg-hero.jpg') center no-repeat;
     background-size: cover;
-    height: 100vh;
+    min-height: 100vh;
     overflow: hidden;
 
     .wrap-hero {
@@ -105,6 +105,9 @@
             padding: 0 2.2rem;
             align-items: flex-start;
         }
+        @media (max-width: 600px) {
+            bottom: 17rem;
+        }
     }
 
     .video-1 {
@@ -113,6 +116,13 @@
         left: -7%;
         width: 116%;
         z-index: 2;
+
+        @media (max-width: 600px) {
+            top: 12%;
+            left: 0;
+            width: 100%;
+            transform: scale(3.2) !important;
+        }
     }
 
     .video-2 {
@@ -121,6 +131,13 @@
         left: -11%;
         width: 90%;
         z-index: 1;
+
+        @media (max-width: 600px) {
+            top: 3%;
+            left: -27%;
+            width: 100%;
+            transform: scale(2) !important;
+        }
     }
 
     .video-3 {
@@ -129,6 +146,13 @@
         left: -15%;
         width: 70%;
         z-index: 3;
+
+        @media (max-width: 600px) {
+            top: 27%;
+            left: -41%;
+            width: 100%;
+            transform: scale(1) !important;    
+        }
     }
 
     .video-4 {
@@ -137,6 +161,13 @@
         left: -11%;
         width: 36%;
         z-index: 4;
+
+        @media (max-width: 600px) {
+            top: 30%;
+            left: 32%;
+            width: 100%;
+            transform: scale(0.8) !important; 
+        }
     }
 
     .video-5 {
@@ -145,6 +176,13 @@
         right: -18%;
         width: 60%;
         z-index: 5;
+
+        @media (max-width: 600px) {
+            top: -16%;
+            left: 32%;
+            width: 100%;
+            transform: scale(1.8) !important;
+        }
     }
 
     .video-6 {
@@ -153,6 +191,10 @@
         right: -12%;
         width: 37%;
         z-index: 6;
+
+        @media (max-width: 600px) {
+            display: none;
+        }
     }
 
     @media (max-width: 1600px) {
@@ -174,7 +216,7 @@
     @media (max-width: 600px) {
         background: url('../../assets/image/bg-mobile.png') center no-repeat;
         background-size: cover !important;
-        transform: translateY(-20px);
+        // transform: translateY(-20px);
         z-index: -1;
     }
 }
