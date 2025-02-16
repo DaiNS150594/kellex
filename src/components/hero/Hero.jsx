@@ -47,9 +47,8 @@ const Hero = () => {
           playsInline
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
-          style={{ backgroundColor: 'transparent', mixBlendMode: 'multiply' }}
+          style={{ backgroundColor: 'transparent' }}
         >
-      
           <source src={videoSrc.mov} type="video/quicktime" />
           <source src={videoSrc.webm} type="video/webm" />
           Your browser does not support the video tag.
