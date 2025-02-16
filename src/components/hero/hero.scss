@@ -228,3 +228,9 @@
 #root {
     overflow: hidden;
 }
+
+.video {
+    background-color: transparent !important;
+    mix-blend-mode: multiply; // Ensures background blending
+  }
+  
