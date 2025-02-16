@@ -132,6 +132,10 @@
         width: 90%;
         z-index: 1;
 
+        @media (min-width: 800px) and (max-width: 1440px) {
+            top: -50%;
+        }
+
         @media (max-width: 600px) {
             top: 3%;
             left: -27%;
