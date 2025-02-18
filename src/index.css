@@ -87,3 +87,11 @@ body {
   min-width: 100%;
   min-height: 100%;
 }
+
+@media (max-width: 600px) {
+  .video-safari {
+    position: relative;
+    transform: translateY(5rem);
+    z-index: -1;
+  }
+}
