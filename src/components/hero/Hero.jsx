@@ -6,21 +6,20 @@ import video3Webm from '../../assets/image/Comp_3.webm';
 import video4Webm from '../../assets/image/Comp_4.webm';
 import video5Webm from '../../assets/image/Comp_5.webm';
 import video6Webm from '../../assets/image/Comp_6.webm';
-import video1Mov from '../../assets/image/Comp_1.mov';
-import video2Mov from '../../assets/image/Comp_2.mov';
-import video3Mov from '../../assets/image/Comp_3.mov';
-import video4Mov from '../../assets/image/Comp_4.mov';
-import video5Mov from '../../assets/image/Comp_5.mov';
-import video6Mov from '../../assets/image/Comp_6.mov';
+import videoPC_Safari from '../../assets/image/bg-desktop.mp4';
+import videoMobile_Safari from '../../assets/image/bg-mobi.mp4';
 
 const videoSources = [
-  { webm: video1Webm, mov: video1Mov },
-  { webm: video2Webm, mov: video2Mov },
-  { webm: video3Webm, mov: video3Mov },
-  { webm: video4Webm, mov: video4Mov },
-  { webm: video5Webm, mov: video5Mov },
-  { webm: video6Webm, mov: video6Mov }
+  video1Webm,
+  video2Webm,
+  video3Webm,
+  video4Webm,
+  video5Webm,
+  video6Webm
 ];
+
+const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
 const Hero = () => {
   const handleMouseMove = (e) => {
@@ -37,23 +36,36 @@ const Hero = () => {
 
   return (
     <div className="hero">
-      {videoSources.map((videoSrc, index) => (
+      {isSafari ? (
         <video
-          key={index}
-          className={`video video-${index + 1}`}
+          className="video-safari"
           autoPlay
           loop
           muted
           playsInline
-          onMouseMove={handleMouseMove}
-          onMouseLeave={handleMouseLeave}
           style={{ backgroundColor: 'transparent' }}
         >
-          <source src={videoSrc.mov} type="video/quicktime" />
-          <source src={videoSrc.webm} type="video/webm" />
+          <source src={isMobile ? videoMobile_Safari : videoPC_Safari} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-      ))}
+      ) : (
+        videoSources.map((videoSrc, index) => (
+          <video
+            key={index}
+            className={`video video-${index + 1}`}
+            autoPlay
+            loop
+            muted
+            playsInline
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            style={{ backgroundColor: 'transparent' }}
+          >
+            <source src={videoSrc} type="video/webm" />
+            Your browser does not support the video tag.
+          </video>
+        ))
+      )}
 
       <div className="wrap-hero">
         <h1 className="ml16">From Heritage to Modernity:</h1>
