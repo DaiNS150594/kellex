@@ -43,7 +43,7 @@ const Hero = () => {
           loop
           muted
           playsInline
-          style={{ backgroundColor: 'transparent' }}
+          style={{ backgroundColor: 'transparent', width: '100%' }}
         >
           <source src={isMobile ? videoMobile_Safari : videoPC_Safari} type="video/mp4" />
           Your browser does not support the video tag.
