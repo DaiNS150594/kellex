@@ -74,23 +74,3 @@ body {
   list-style: none;
   text-decoration: none;
 }
-
-body {
-  overflow: hidden;
-}
-
-.video-safari {
-  width: 100%;
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  min-width: 100%;
-  min-height: 100%;
-}
-
-@media (max-width: 600px) {
-  .video-safari {
-    position: relative;
-    transform: translateY(-6rem);
-  }
-}

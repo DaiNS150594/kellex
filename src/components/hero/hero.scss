@@ -225,6 +225,10 @@
     }
 }
 
+body {
+    overflow: hidden;
+}
+
 .video-safari {
     width: 100%;
     position: fixed;
@@ -234,7 +238,9 @@
     min-height: 100%;
 }
 
-#root {
-    overflow: hidden;
+@media (max-width: 600px) {
+    .video-safari {
+        position: relative;
+        transform: translateY(-6rem);
+    }
 }
-  
