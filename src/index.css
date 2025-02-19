@@ -91,7 +91,6 @@ body {
 @media (max-width: 600px) {
   .video-safari {
     position: relative;
-    transform: translateY(1rem);
-    z-index: -1;
+    transform: translateY(-6rem);
   }
 }
