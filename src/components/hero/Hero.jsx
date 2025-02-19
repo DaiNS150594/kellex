@@ -1,4 +1,4 @@
-import React from 'react';
+import {React, useEffect} from 'react';
 import './hero.scss';
 import video1Webm from '../../assets/image/Comp_1.webm';
 import video2Webm from '../../assets/image/Comp_2.webm';
@@ -7,7 +7,7 @@ import video4Webm from '../../assets/image/Comp_4.webm';
 import video5Webm from '../../assets/image/Comp_5.webm';
 import video6Webm from '../../assets/image/Comp_6.webm';
 import videoPC_Safari from '../../assets/image/bg-desktop.mp4';
-import videoMobile_Safari from '../../assets/image/bg-mobi.mp4';
+import videoMobile from '../../assets/image/bg-mobi.mp4';
 
 const videoSources = [
   video1Webm,
@@ -18,10 +18,20 @@ const videoSources = [
   video6Webm
 ];
 
-const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+const useDetectSafari = () => {
+  useEffect(() => {
+    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    if (isSafari) {
+      document.body.classList.add("is-safari");
+    } else {
+      document.body.classList.remove("is-safari");
+    }
+  }, []);
+};
 
 const Hero = () => {
+  useDetectSafari();
+
   const handleMouseMove = (e) => {
     const { currentTarget: video } = e;
     const rect = video.getBoundingClientRect();
@@ -36,19 +46,7 @@ const Hero = () => {
 
   return (
     <div className="hero">
-      {isSafari ? (
-        <video
-          className="video-safari"
-          autoPlay
-          loop
-          muted
-          playsInline
-          style={{ backgroundColor: 'transparent', width: '100%' }}
-        >
-          <source src={isMobile ? videoMobile_Safari : videoPC_Safari} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      ) : (
+      {
         videoSources.map((videoSrc, index) => (
           <video
             key={index}
@@ -65,7 +63,34 @@ const Hero = () => {
             Your browser does not support the video tag.
           </video>
         ))
-      )}
+      }
+
+      <video
+        className="video-pc-safari"
+        autoPlay
+        loop
+        muted
+        playsInline
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        style={{ backgroundColor: 'transparent' }}
+      >
+        <source src={videoPC_Safari} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <video
+        className="video-mobile"
+        autoPlay
+        loop
+        muted
+        playsInline
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        style={{ backgroundColor: 'transparent' }}
+      >
+        <source src={videoMobile} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
 
       <div className="wrap-hero">
         <h1 className="ml16">From Heritage to Modernity:</h1>

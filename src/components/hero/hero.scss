@@ -48,6 +48,10 @@
                 text-align: left;
                 font-size: 4rem;
             }
+
+            @media (max-width: 768px) {
+                font-size: 3.5rem;
+            }
         }
 
         .btnHero {
@@ -215,6 +219,10 @@
         width: 100%;
         height: 40%;
         background: linear-gradient(180deg, rgba(0, 229, 255, 0.00) 0%, rgba(0, 229, 255, 0.06) 50%, rgba(0, 229, 255, 0.40) 100%);
+
+        @media (max-width: 768px) {
+            display: none;
+        }
     }
 
     @media (max-width: 600px) {
@@ -229,18 +237,41 @@ body {
     overflow: hidden;
 }
 
-.video-safari {
+.video-mobile {
+    display: none;
     width: 100%;
     position: fixed;
     right: 0;
-    bottom: 0;
+    top: 0;
     min-width: 100%;
     min-height: 100%;
+
+    @media (max-width: 768px) {
+        display: block;
+    }
 }
 
-@media (max-width: 600px) {
-    .video-safari {
-        position: relative;
-        transform: translateY(-6rem);
+.video-pc-safari {
+    display: none;
+
+    .is-safari & {
+        display: block;
+        width: 100%;
+        position: fixed;
+        right: 0;
+        top: 0;
+        min-width: 100%;
+        min-height: 100%;
+    }
+}
+
+.is-safari .video {
+    display: none !important;
+}
+
+@media (max-width: 768px) {
+    .video,
+    .video-pc-safari {
+        display: none !important;
     }
 }
