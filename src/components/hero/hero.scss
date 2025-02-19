@@ -109,7 +109,8 @@
             padding: 0 2.2rem;
             align-items: flex-start;
         }
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
+            position: fixed;
             bottom: 17rem;
         }
     }
