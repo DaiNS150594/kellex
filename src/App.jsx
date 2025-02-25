@@ -3,48 +3,52 @@ import Header from './components/header/Header';
 import Hero from './components/hero/Hero';
 import './index.css';
 
-const Preloader = () => {
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setProgress((oldProgress) => {
-        if (oldProgress >= 100) {
-          clearInterval(interval);
-          return 100;
-        }
-        return oldProgress + 5;
-      });
-    }, 150);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  return (
-    <div className="preloader">
-      <div className="progress-circle" style={{
-        background: `conic-gradient(#00bfff ${progress}%, #222 ${progress}%)`
-      }}>
-        <span>{progress}%</span>
-        <div className="progress-mask"></div>
-      </div>
-    </div>
-  );
-};
-
 const App = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 3000);
-    return () => clearTimeout(timer);
+    // Set up the interval for adding the "active" class to bars
+    const interval = 5 * 1000 / 40; // 5/16 seconds in milliseconds
+    const bars = document.querySelectorAll('.bar-item');
+    let currentIndex = 0;
+
+    const addActiveClass = () => {
+      if (currentIndex < bars.length) {
+        // Add active class to the current bar
+        bars[currentIndex].classList.add('active');
+        currentIndex++;
+      } else {
+        // Stop the interval once all bars have the "active" class
+        clearInterval(intervalId);
+      }
+    };
+
+    const intervalId = setInterval(addActiveClass, interval);
+
+    // Hide loading screen after 5 seconds
+    const timer = setTimeout(() => setLoading(false), 5000);
+
+    // Cleanup interval and timer on component unmount
+    return () => {
+      clearInterval(intervalId);
+      clearTimeout(timer);
+    };
   }, []);
 
   return (
     <>
-      {loading ? <Preloader /> : <><Header /><Hero /></>}
+      <div id="loading-screen" className={`wrap-loading ${!loading ? 'hidden' : ''}`}>
+        <h3 className="loading-text">LOADING...</h3>
+        <div className="loading-bar">
+          {Array.from({ length: 40 }).map((_, index) => (
+            <div key={index} className="bar-item"></div>
+          ))}
+        </div>
+      </div>
+      <div id="main-content" className={`${!loading ? 'visible' : ''}`}>
+        <Header />
+        <Hero />
+      </div>
     </>
   );
 };
